@@ -1,5 +1,6 @@
 package com.kkiran.criminalintent.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.kkiran.criminalintent.R;
+import com.kkiran.criminalintent.activity.CrimeActivity;
 import com.kkiran.criminalintent.model.Crime;
 import com.kkiran.criminalintent.model.CrimeLab;
 
@@ -45,7 +47,7 @@ public class CrimeListFragment extends Fragment {
         mRecyclerView.setAdapter(mCrimeAdapter);
     }
 
-    private class CrimeViewHolder extends RecyclerView.ViewHolder {
+    private class CrimeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView mTitleTextView;
         private TextView mDateTextView;
@@ -55,6 +57,7 @@ public class CrimeListFragment extends Fragment {
 
         public CrimeViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_crime_title_text_view);
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_crime_date_text_view);
             mSolvedCheckbox= (CheckBox) itemView.findViewById(R.id.list_item_crime_solved_checkbox);
@@ -65,6 +68,12 @@ public class CrimeListFragment extends Fragment {
             mTitleTextView.setText(mCrime.getTitle());
             mDateTextView.setText(mCrime.getDate().toString());
             mSolvedCheckbox.setChecked(mCrime.isSolved());
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent i = CrimeActivity.createNewIntent(getActivity(), mCrime.getId());
+            startActivity(i);
         }
     }
 
