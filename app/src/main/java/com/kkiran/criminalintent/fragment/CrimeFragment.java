@@ -14,7 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.kkiran.criminalintent.R;
-import com.kkiran.criminalintent.activity.CrimeActivity;
 import com.kkiran.criminalintent.model.Crime;
 import com.kkiran.criminalintent.model.CrimeLab;
 
@@ -29,12 +28,23 @@ public class CrimeFragment extends Fragment {
     private Button mDateButton;
     private CheckBox mSolvedCheckbox;
 
+    private static final String ARG_CRIME_ID = "crime_id";
+
+    public static CrimeFragment newInstance(UUID uuid){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(ARG_CRIME_ID, uuid);
+
+        CrimeFragment crimeFragment = new CrimeFragment();
+        crimeFragment.setArguments(bundle);
+
+        return crimeFragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID uuId = (UUID)getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
-        CrimeLab crimeLab = CrimeLab.get(getContext());
-        mCrime = crimeLab.get(uuId);
+        UUID crimeId = (UUID)getArguments().getSerializable(ARG_CRIME_ID);
+        mCrime = CrimeLab.get(getActivity()).get(crimeId);
     }
 
     @Nullable
