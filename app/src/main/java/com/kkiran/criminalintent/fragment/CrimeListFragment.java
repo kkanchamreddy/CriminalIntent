@@ -27,6 +27,8 @@ public class CrimeListFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private CrimeAdapter mCrimeAdapter;
 
+    private static final int REQUEST_CRIME = 1;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
