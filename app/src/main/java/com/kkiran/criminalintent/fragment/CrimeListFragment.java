@@ -13,7 +13,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.kkiran.criminalintent.R;
-import com.kkiran.criminalintent.activity.CrimeActivity;
+import com.kkiran.criminalintent.activity.CrimePagerActivity;
 import com.kkiran.criminalintent.model.Crime;
 import com.kkiran.criminalintent.model.CrimeLab;
 
@@ -85,7 +85,7 @@ public class CrimeListFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent i = CrimeActivity.createNewIntent(getActivity(), mCrime.getId());
+            Intent i = CrimePagerActivity.createNewIntent(getActivity(), mCrime.getId());
             startActivity(i);
         }
     }
