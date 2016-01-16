@@ -1,5 +1,7 @@
 package com.kkiran.criminalintent.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +20,7 @@ import com.kkiran.criminalintent.R;
 import com.kkiran.criminalintent.model.Crime;
 import com.kkiran.criminalintent.model.CrimeLab;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -31,6 +34,7 @@ public class CrimeFragment extends Fragment {
 
     private static final String ARG_CRIME_ID = "crime_id";
     private static final String DIALOG_DATE = "DialogDate";
+    private static final int REQUEST_DATE = 0;
 
     public static CrimeFragment newInstance(UUID uuid){
         Bundle bundle = new Bundle();
@@ -74,13 +78,14 @@ public class CrimeFragment extends Fragment {
         });
 
         mDateButton = (Button)v.findViewById(R.id.crime_date);
-        mDateButton.setText(mCrime.getDate().toString());
+        updateDate();
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
 
                 DatePickerFragment datePickerFragment =  DatePickerFragment.newInstance(mCrime.getDate());
+                datePickerFragment.setTargetFragment(CrimeFragment.this,REQUEST_DATE);
                 datePickerFragment.show(fragmentManager, DIALOG_DATE);
             }
         });
@@ -96,5 +101,22 @@ public class CrimeFragment extends Fragment {
 
 
         return v;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if (requestCode == REQUEST_DATE) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mCrime.setDate(date);
+            updateDate();
+        }
+    }
+
+    private void updateDate() {
+        mDateButton.setText(mCrime.getDate().toString());
     }
 }
