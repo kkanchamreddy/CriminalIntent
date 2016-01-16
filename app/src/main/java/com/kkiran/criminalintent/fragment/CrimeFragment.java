@@ -3,6 +3,7 @@ package com.kkiran.criminalintent.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class CrimeFragment extends Fragment {
     private CheckBox mSolvedCheckbox;
 
     private static final String ARG_CRIME_ID = "crime_id";
+    private static final String DIALOG_DATE = "DialogDate";
 
     public static CrimeFragment newInstance(UUID uuid){
         Bundle bundle = new Bundle();
@@ -73,7 +75,15 @@ public class CrimeFragment extends Fragment {
 
         mDateButton = (Button)v.findViewById(R.id.crime_date);
         mDateButton.setText(mCrime.getDate().toString());
-        mDateButton.setEnabled(false);
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+
+                DatePickerFragment datePickerFragment = new DatePickerFragment();
+                datePickerFragment.show(fragmentManager, DIALOG_DATE);
+            }
+        });
 
         mSolvedCheckbox = (CheckBox)v.findViewById(R.id.crime_solved);
         mSolvedCheckbox.setChecked(mCrime.isSolved());
