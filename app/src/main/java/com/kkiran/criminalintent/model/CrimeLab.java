@@ -37,6 +37,10 @@ public class CrimeLab {
         mCrimes.add(crime);
     }
 
+    public boolean deleteCrime(UUID crimeId) {
+        return mCrimes.remove(this.get(crimeId));
+    }
+
     private CrimeLab(Context context){
         mCrimes = new ArrayList<>();
     }

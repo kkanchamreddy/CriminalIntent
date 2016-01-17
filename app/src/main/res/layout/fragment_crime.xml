@@ -35,4 +35,13 @@
         android:layout_marginRight="16dp"
         android:text="@string/crime_solved_label"
         />
+
+    <ImageButton android:id="@+id/delete_crime_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/delete_crime"
+        android:src="@drawable/ic_delete"
+        android:background="#00ffffff"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

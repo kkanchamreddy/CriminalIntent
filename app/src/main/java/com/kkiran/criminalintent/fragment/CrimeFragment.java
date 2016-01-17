@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.kkiran.criminalintent.R;
 import com.kkiran.criminalintent.model.Crime;
@@ -31,6 +32,7 @@ public class CrimeFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckbox;
+    private ImageButton mDeleteCrimeButton;
 
     private static final String ARG_CRIME_ID = "crime_id";
     private static final String DIALOG_DATE = "DialogDate";
@@ -84,8 +86,8 @@ public class CrimeFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
 
-                DatePickerFragment datePickerFragment =  DatePickerFragment.newInstance(mCrime.getDate());
-                datePickerFragment.setTargetFragment(CrimeFragment.this,REQUEST_DATE);
+                DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mCrime.getDate());
+                datePickerFragment.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
                 datePickerFragment.show(fragmentManager, DIALOG_DATE);
             }
         });
@@ -96,6 +98,15 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mCrime.setSolved(isChecked);
+            }
+        });
+
+        mDeleteCrimeButton = (ImageButton)v.findViewById(R.id.delete_crime_button);
+        mDeleteCrimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CrimeLab.get(getActivity()).deleteCrime(mCrime.getId());
+                getActivity().finish();
             }
         });
 
