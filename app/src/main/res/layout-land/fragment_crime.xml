@@ -41,14 +41,47 @@
             android:text="@string/crime_solved_label"
             android:layout_weight="1" />
 
-        <ImageButton android:id="@+id/delete_crime_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/delete_crime"
-            android:src="@drawable/ic_delete"
-            android:background="#00ffffff"
-             android:layout_weight="1"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <Button android:id="@+id/crime_suspect_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/crime_suspect_text"
+                android:layout_weight="1"/>
+
+        <Button android:id="@+id/crime_report_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/crime_report_text"
+                android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <ImageButton android:id="@+id/delete_crime_button"
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:contentDescription="@string/delete_crime"
+                     android:paddingTop="20dp"
+                     android:src="@drawable/ic_delete"
+                     android:background="#00ffffff"
+                     android:layout_weight="1"/>
     </LinearLayout>
 
 </LinearLayout>
