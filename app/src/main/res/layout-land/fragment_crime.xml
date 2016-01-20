@@ -41,6 +41,14 @@
             android:text="@string/crime_solved_label"
             android:layout_weight="1" />
 
+        <ImageButton android:id="@+id/delete_crime_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/delete_crime"
+            android:src="@drawable/ic_delete"
+            android:background="#00ffffff"
+             android:layout_weight="1"/>
+
     </LinearLayout>
 
 </LinearLayout>
